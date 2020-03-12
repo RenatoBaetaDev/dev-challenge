@@ -1,0 +1,22 @@
+.page-header
+    h1 Stuff to do...
+.table-responsive
+    table.table.table-bordered.table-striped.table-hover
+        thead
+            tr
+                th Description
+                th Category
+                th Complete?
+                th Due by
+                th Actions
+        tbody
+            tr(ng-repeat='todoItem in todoItems | filter:search')
+                td
+                    a(ui-sref='edit({id:{{$index}}})') {{todoItem.description}}
+                td {{todoItem.category}}
+                td {{todoItem.complete}}
+                td {{todoItem.dueBy | date:&apos;dd-MMM-yyyy&apos;}}
+                td
+                    button.btn.btn-danger.btn-xs(ng-click='delete($index)')
+                        span.glyphicon.glyphicon-remove
+                        span.label Delete

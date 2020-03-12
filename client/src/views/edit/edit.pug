@@ -1,0 +1,32 @@
+.page-header
+    h1
+        | {{todoItem.description}}
+.form-horizontal
+    .row
+        .col-xs-6
+            .form-group
+                label.control-label.col-sm-4(for='description') Name
+                .col-sm-8
+                    p.form-control-static {{todoItem.description}}
+            .form-group
+                label.control-label.col-sm-4(for='category') Category
+                .col-sm-8
+                    a.form-control-static(focus-on='focusMe' editable-select='todoItem.category' e-ng-options="c.desc as c.desc for c in [{desc: 'Professional'}, {desc: 'Domestic'}, {desc: 'Other'} ]") {{ todoItem.category }}
+            .form-group
+                label.control-label.col-sm-4(for='complete') Complete?
+                .col-sm-8
+                    a.form-control-static(editable-checkbox='todoItem.complete') {{ todoItem.complete && "Completed" || "Not complete" }}
+        .col-xs-6
+            .form-group
+                label.control-label.col-sm-4(for='dueBy') Due by
+                .col-sm-8
+                    a.form-control-static(href='#' editable-date='todoItem.dueBy') {{ ( todoItem.dueBy | date:'dd-MMM-yyyy' ) || 'no date' }}
+            .form-group
+                label.control-label.col-sm-4(for='cost') Cost
+                .col-sm-8
+                    a.form-control-static(editable-number='todoItem.cost' e-min='0') {{ todoItem.cost || 'none' }}
+            .form-group
+                label.control-label.col-sm-4(for='notes') Notes
+                .col-sm-8
+                    a.form-control-static(editable-textarea='todoItem.notes' e-rows='7' e-cols='30')
+                        pre {{ todoItem.notes }}              
