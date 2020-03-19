@@ -4,30 +4,40 @@ form.form-horizontal(ng-submit='submit()')
     .row
         .col-sm-6
             .form-group
-                label.control-label.col-sm-4(for='description') Name
+                label.control-label.col-sm-4(for='description') Description
                 .col-sm-8
-                    input#description.form-control(type='text' focus-on='focusMe' ng-model='todoItem.name')
+                    input#description.form-control(type='text' focus-on='focusMe' ng-model='todoItem.description' ng-required="true")
             .form-group
                 label.control-label.col-sm-4(for='category') Category
                 .col-sm-8
-                    input#category.form-control(type='text' ng-model='todoItem.category')
+                    select#category.form-control(
+                        ng-model='todoItem.category' 
+                        ng-options="c.desc as c.desc for c in [{desc: 'Professional'}, {desc: 'Domestic'}, {desc: 'Other'} ]" 
+                        ng-required="true"
+                    )
+                        option(value="") Please choose a category
+                    
             .form-group
                 label.control-label.col-sm-4(for='complete') Complete?
                 .col-sm-8
-                    input#complete.form-control(type='text' ng-model='todoItem.complete')
+                    select#category.form-control(ng-model='todoItem.complete' ng-options="c.value as c.value for c in [{value: 'true'}, {value: 'false'} ]" ng-required="true")                    
+                        option(value="") Please choose a status
         .col-sm-6
             .form-group
                 label.control-label.col-sm-4(for='dueBy') Due by
                 .col-sm-8
-                    input#dueBy.form-control(type='text' ng-model='todoItem.dueBy')
+                    input#dueBy.form-control(type='date' ng-model='todoItem.dueBy' ng-required="true")
             .form-group
-                label.control-label.col-sm-4(for='cost') Cost
+                label.control-label.col-sm-4(for='costs') Costs
                 .col-sm-8
-                    input#cost.form-control(type='text' ng-model='todoItem.cost')
+                    input#costs.form-control(type='number' ng-model='todoItem.costs' ng-required="true" min="0")
             .form-group
                 label.control-label.col-sm-4(for='notes') Notes
                 .col-sm-8
-                    textarea#notes.form-control(ng-model='todoItem.notes' bs-tooltip='' data-title='Any additional information about the todo item.' data-trigger='focus' data-placement='bottom')
-    .form-group.well
-        .col-sm-offset-2.col-sm-10
-            input.btn.btn-primary(type='submit' value='Create')
+                    textarea#notes.form-control(ng-model='todoItem.notes' bs-tooltip='' data-title='Any additional information about the todo item.' data-trigger='focus' data-placement='bottom' ng-required="true")
+    .row
+        .col-sm-offset-2.col-sm-5
+            input.btn.btn-primary(type='submit' value='Create')   
+        .col-sm-5
+            a.btn.btn-danger(ng-click="reset()") Reset    
+

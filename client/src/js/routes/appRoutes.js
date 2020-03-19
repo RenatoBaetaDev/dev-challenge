@@ -5,7 +5,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         .state('list', {
             url: "/",
             templateUrl: 'list/list.html',
-            controller: 'indexCtl'
+            controller: 'indexCtl',
+            resolve: {
+                todos: function(todoFactory) {                    
+                    return todoFactory.getTodos();
+                }
+            }
         })
         .state('create', {
             url: "/create",
@@ -13,8 +18,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             controller: 'addCtl'
         })
         .state('edit', {
-            url: "/todoItems",
+            url: "/todoItems/:id",
             templateUrl: 'edit/edit.html',
-            controller: 'todoItemCtl'
+            controller: 'todoItemCtl',
+            resolve: {
+                todo: function(todoFactory, $stateParams) {                    
+                    return todoFactory.getById($stateParams.id);
+                }
+            }            
     });
 }]);

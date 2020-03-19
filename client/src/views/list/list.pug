@@ -12,11 +12,15 @@
         tbody
             tr(ng-repeat='todoItem in todoItems | filter:search')
                 td
-                    a(ui-sref='edit({id:{{$index}}})') {{todoItem.description}}
+                    a(ui-sref='edit({id:{{todoItem.id}}})') {{todoItem.description}}
                 td {{todoItem.category}}
                 td {{todoItem.complete}}
                 td {{todoItem.dueBy | date:&apos;dd-MMM-yyyy&apos;}}
                 td
-                    button.btn.btn-danger.btn-xs(ng-click='delete($index)')
-                        span.glyphicon.glyphicon-remove
+                    button.btn.btn-danger.btn-xs(ng-click='delete(todoItem.id)')
+                        //- span.glyphicon.glyphicon-remove
                         span.label Delete
+
+.row
+    .col-md-12
+        a.btn.btn-primary(ui-sref='create') New Todo        

@@ -23,9 +23,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -40,12 +40,12 @@ $app = new Laravel\Lumen\Application(
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    Exceptions\Handler::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    Console\Kernel::class
 );
 
 /*
@@ -71,6 +71,10 @@ $app->configure('app');
 | route or middleware that'll be assigned to some specific routes.
 |
 */
+
+$app->middleware([ 
+    Middleware\CORSMiddleware::class,
+]);
 
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
@@ -106,10 +110,15 @@ $app->configure('app');
 |
 */
 
-$app->router->group([
-    'namespace' => 'App\Http\Controllers',
-], function ($router) {
-    require __DIR__.'/../routes/web.php';
+// $app->router->group([
+//     // 'namespace' => 'App\Http\Controllers',
+//     'namespace' => 'App\Application\Controllers',
+// ], function ($router) {
+//     require __DIR__.'/../app/Interfaces/Routes/web.php';
+// });
+
+$app->router->group([], function ($router) {
+    require __DIR__.'/../app/Interfaces/Routes/web.php';
 });
 
 return $app;

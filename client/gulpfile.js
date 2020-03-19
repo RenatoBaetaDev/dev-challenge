@@ -94,7 +94,8 @@ var path = {
     'node_modules/bootstrap/dist/css/bootstrap.min.css',
     'node_modules/angular-motion/dist/angular-motion.css',
     'node_modules/angular-xeditable/dist/css/xeditable.min.css',
-    'src/css/app.css'
+    'src/css/app.css',
+    'node_modules/angularjs-toaster/toaster.min.css',
   ],
   // Pacotes de terceiros que devem ser comprimidos e movidos para dist/js/vendor.js
   VENDOR: [
@@ -105,7 +106,8 @@ var path = {
     'node_modules/angular-animate/angular-animate.min.js',
     'node_modules/angular-strap/dist/angular-strap.min.js',
     'node_modules/angular-xeditable/dist/js/xeditable.min.js',
-    'node_modules/angular-sanitize/angular-sanitize.min.js'
+    'node_modules/angular-sanitize/angular-sanitize.min.js',
+    'node_modules/angularjs-toaster/toaster.min.js',
   ],
   // Pasta de destino dos arquivos que passam por tarefas de minificação,
   // compressão, concatenação, conversão, ou simplesmente troca de diretório

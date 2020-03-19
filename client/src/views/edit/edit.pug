@@ -1,7 +1,7 @@
 .page-header
     h1
         | {{todoItem.description}}
-.form-horizontal
+.form-horizontal(ng-submit='save()')
     .row
         .col-xs-6
             .form-group
@@ -20,13 +20,17 @@
             .form-group
                 label.control-label.col-sm-4(for='dueBy') Due by
                 .col-sm-8
-                    a.form-control-static(href='#' editable-date='todoItem.dueBy') {{ ( todoItem.dueBy | date:'dd-MMM-yyyy' ) || 'no date' }}
+                    a.form-control-static(href='#' editable-date='todoItem.dueBy') {{ ( todoItem.dueBy | date:'dd/MMM/yyyy' ) || 'no date' }}
             .form-group
-                label.control-label.col-sm-4(for='cost') Cost
+                label.control-label.col-sm-4(for='costs') Costs
                 .col-sm-8
-                    a.form-control-static(editable-number='todoItem.cost' e-min='0') {{ todoItem.cost || 'none' }}
+                    a.form-control-static(editable-number='todoItem.costs' e-min='0') {{ todoItem.costs || 'none' }}
             .form-group
                 label.control-label.col-sm-4(for='notes') Notes
                 .col-sm-8
                     a.form-control-static(editable-textarea='todoItem.notes' e-rows='7' e-cols='30')
-                        pre {{ todoItem.notes }}              
+                        pre {{ todoItem.notes }}        
+
+.row
+    .col-sm-offset-2.col-sm-5       
+        a.btn.btn-primary(ui-sref='list') Return
